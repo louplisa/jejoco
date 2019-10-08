@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Création événement{% endblock %}
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Création événement</h1>
+    <div class="container">
+        <div class="mt-4">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col">
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_label(form.name) }}
+                            {{ form_widget(form.name) }}
+                        </div>
+                    </div>
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_label(form.description) }}
+                            {{ form_widget(form.description) }}
+                        </div>
+                    </div>
+
+                    <div class="input-group lg-5 mb-4">
+                        <span style=" color: #0c84e4;">Début : </span>
+                        <div class="input-group-prepend" style="margin-left: 2rem">
+                            {{ form_label(form.beginAt) }}
+                            {{ form_widget(form.beginAt) }}
+                            <div class="input-group-prepend">
+                                <i class="fa fa-calendar" id="calendar" aria-hidden="true"
+                                   style="margin-left: 0.5rem; margin-top: 7px"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group lg-5 mb-4">
+                        <span style=" color: #0c84e4;">Fin : </span>
+                        <div class="input-group-prepend" style="margin-left: 3.4rem">
+
+                            {{ form_label(form.endAt) }}
+                            {{ form_widget(form.endAt) }}
+                            <div class="input-group-append">
+                                <i class="fa fa-calendar" id="calendar" aria-hidden="true"
+                                   style="margin-left: 0.5rem; margin-top: 7px"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <span style=" color: #0c84e4;">Fichiers image de l'évenement, en format jpg uniquement : (facultatif)</span>
+                    <div class="input-group mb-3">
+
+
+                        <div class="custom-file" style=" margin-top: 2rem">
+                            {{ form_label(form.imageFileOne) }}
+                            <div style="width: 89%; margin-left: 4px" class="custom-file">
+                                {{ form_widget(form.imageFileOne) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+
+                        <div class="custom-file">
+                            {{ form_label(form.imageFileTwo) }}
+                            <div style="width: 89%; margin-left: 4px">
+                                {{ form_widget(form.imageFileTwo) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+
+                        <div class="custom-file" style="margin-bottom: 2rem">
+                            {{ form_label(form.imageFileThree) }}
+                            <div style="width: 89%; margin-left: 4px">
+                                {{ form_widget(form.imageFileThree) }}
+                            </div>
+                        </div>
+                    </div>
+                   <div class="mb-lg-5">
+                        <span style=" color: #0c84e4; font-size: 1.1rem;">Association(s) partenaire(s) (plusieurs choix possibles) : (facultatif)</span>
+                        <div class="form-group" style="margin-top: 2rem">
+                            {{ form_row(form.organizationsPartner) }}
+                        </div>
+                    </div>
+
+                    <div class="container" style="display: block">
+                        <div class="row justify-content-md-center">
+                            <div class="col col-lg-2">
+                                <a class="btn btn-primary" href="{{ path('admin_event_index') }}">
+                                    <button type="button" class=" btn btn-primary" style="width: 100px">Retour</button>
+                                    <i class="fa fa-undo-alt" id="retour"></i>
+                                </a>
+                            </div>
+
+                            <div class="col col-lg-2">
+                                <button type="submit" class="btn btn-success" style="height: 3.3rem;width: 148px">
+                                    Enregistrer <i class="fa fa-save" style="width: 2rem"></i></button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="text-align: center; margin: 3rem">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}
+{% block javascripts %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+    <script>
+        $("input[type=file]").change(function (e) {
+            $(this).next('.custom-file-label').text(e.target.files[0].name);
+        })
+    </script>
+{% endblock %}

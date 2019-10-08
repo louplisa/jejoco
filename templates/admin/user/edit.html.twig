@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Editer votre profil{% endblock %}
+{% block stylesheets %}{{ parent() }}
+{% endblock %}
+
+{% block body %}{{ parent() }}
+
+    <h1 style="margin-top: 2rem">Modification de votre profil :</h1>
+    <div class="container">
+        <div class="mt-4">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col">
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_row(form.lastname) }}
+                        </div>
+                    </div>
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_row(form.firstname) }}
+                        </div>
+                    </div>
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_row(form.username) }}
+                        </div>
+                    </div>
+                    <div class="mb-lg-5">
+                        <div class="form-group">
+                            {{ form_row(form.email) }}
+                        </div>
+                    </div>
+
+                </div>
+
+
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="container" style="display: block; margin-top: 5rem">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="{{ path('admin_user_account') }}">
+                    <button type="button" class=" btn btn-primary" style="width: 100px">Retour</button>
+                    <i class="fa fa-undo-alt" id="retour"></i>
+                </a>
+
+            </div>
+            <div class="col col-lg-2">
+                <button type="submit" class="btn btn-success" style="height: 3.3rem;width: 148px">Enregistrer <i
+                            class="fa fa-save" style="width: 2rem"></i></button>
+                {{ form_end(form) }}
+            </div>
+
+            <div>
+                {{ include('admin/user/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer style="margin-left: 46%; margin-top: 12%">
+        <a href="{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+
+
+{% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+
+
+
+
+
+

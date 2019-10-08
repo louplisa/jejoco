@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}{{ parent() }}
+
+    <h1 style="margin-top: 2rem">Choisissez la ou les association(s) dont vous souhaitez devenir membre :</h1>
+
+ {% for organization in orgs if organization.id %}
+            <form action="{{ path('admin_user_choice_org', {id: organization.id}) }}">
+     {% endfor %}
+
+                {% for organization in orgs %}
+            <div class="container" style="margin-left: 40%">
+                <div class="mt-4">
+
+                        <input type="checkbox" name="myIdsOrg[]"
+                               value="{{ organization.id }}">
+
+                        {{ organization.name }}
+
+                </div>
+            </div>
+
+{% endfor %}
+
+
+    <div class="row" style="text-align: center; margin-top: 2rem; margin-left: 43%">
+        <button class="btn btn-success">Valider <i class="fa fa-check"></i></button>
+    </div>
+    </form>
+
+    {#
+
+        <div class="container" style="margin-left: 43%">
+
+            <div class="mt-5">
+
+                {{ form_start(form) }}
+
+            {{ form_rest(form) }}
+
+            <button type="submit" class="btn btn-success" style="margin-top: 4rem">Enregistrer</button>
+            {{ form_end(form) }}
+            </div>
+        </div>
+        <footer style="margin-left: 43.3%; margin-top: 23%">
+            <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+    #}
+{% endblock %}

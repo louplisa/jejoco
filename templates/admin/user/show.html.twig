@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Votre profil {% endblock %}
+
+{% block body %}{{ parent() }}
+
+
+    <div class="card-body" id="showEvent">
+        <div class="card-title">
+            <h1 style="margin-top: 3rem;"><h1>{{ user.username }}</h1></h1>
+        </div>
+
+        <div class="card-text">
+
+            <table class="table">
+                <tbody>
+                <div class="mb-lg-5">
+                    <div class="form-group">
+                        <tr>
+                            <th>Prénom</th>
+                            <td>{{ user.firstname }}</td>
+
+                        </tr>
+                    </div>
+                </div>
+                <div class="mb-lg-5">
+                    <div class="form-group">
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ user.lastname }}</td>
+
+                        </tr>
+                    </div>
+                </div>
+                <div class="mb-lg-5">
+                    <div class="form-group">
+                        <tr>
+                            <th>Pseudo</th>
+                            <td>{{ user.username }}</td>
+
+                        </tr>
+                    </div>
+                </div>
+                <div class="mb-lg-5">
+                    <div class="form-group">
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ user.email }}</td>
+
+                        </tr>
+                    </div>
+                </div>
+                </tbody>
+            </table>
+            <div class="container" style="display: block; margin-top: 5rem">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-2">
+                        <a class="btn btn-primary" href="{{ path('admin_event_home') }}">
+                            <button type="button" class=" btn btn-primary" style="width: 100px">Retour</button>
+                            <i class="fa fa-undo-alt" id="retour"></i>
+                        </a>
+
+                    </div>
+                    <div class="col col-lg-2">
+                        <a class="btn btn-primary" href="{{ path('admin_user_edit', {'id': user.id}) }}">
+                            <button type="button" class=" btn btn-primary" style="width: 165px">Modifier votre profil
+                            </button>
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+
+                    <div class="col col-lg-2">
+                        {{ include('admin/user/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <footer style="text-align: center; margin-top: 16%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}

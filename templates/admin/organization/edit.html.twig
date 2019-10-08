@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Editer Association{% endblock %}
+
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 3rem;">Modifier votre association</h1>
+    <div class="container">
+        <div class="form-row" style="margin-left: 10rem; width: 70%">
+            <div class="col-md-11 col-sm-12">
+                {{ form_start(form) }}
+
+                <label style="margin-top: 3rem">Association :</label>
+                <div style="margin: 2rem">
+                    {{ form_row(form.name) }}
+
+                </div>
+                <div style="margin: 2rem">
+                    {{ form_row(form.organization_number) }}
+                </div>
+
+                <label style="margin-top: 1rem">Logo (facultatif)</label>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.imageFile, {label_attr: {for: 'inputGroupFile01' }}) }}
+                </div>
+
+                <label style="margin-top: 1rem">Président :</label>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.president_lastname) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.president_firstname) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.email) }}
+                </div>
+
+                <label style="margin-top: 1rem">Siège social :</label>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.address_headquarters) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.zip_code) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.city) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.phone_fix) }}
+                </div>
+
+                <div style="margin: 2rem">
+                    {{ form_row(form.phone_mobile) }}
+                </div>
+
+                <div class="container" style="display: block; margin-left: 5%">
+                    <div class="row justify-content">
+                        <div class="col">
+                            <a class="btn btn-primary" href="{{ path('admin_organization_index') }}">
+                                <button type="button" class=" btn btn-primary" style="width: 90px">Retour</button>
+                                <i class="fa fa-undo-alt" id="retour"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-success" style="height: 3.3rem;width: 148px">Enregistrer  <i class="fa fa-save"  style="width: 2rem"></i></button>
+                            {{ form_end(form) }}
+                        </div>
+                        <div class="col">
+                            {{ include('admin/organization/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer style=" margin-top: 3rem; margin-left: 45%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Association index{% endblock %}
+
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 3rem;">Vos Associations :</h1>
+<div style=" overflow:auto;">
+    <table class="table" style="margin-top: 3rem">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>N°association</th>
+            <th>Email</th>
+            <th>Addresse</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th>Nom du président</th>
+            <th>Prénom du président</th>
+            <th>Téléphone</th>
+            <th>Téléphone mobile</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for organization in organizations %}
+            <tr>
+                <td>{{ organization.name }}</td>
+                <td>{{ organization.organization_number }}</td>
+                <td>{{ organization.email }}</td>
+                <td>{{ organization.address_headquarters }}</td>
+                <td>{{ organization.zip_code }}</td>
+                <td>{{ organization.city }}</td>
+                <td>{{ organization.president_lastname }}</td>
+                <td>{{ organization.president_firstname }}</td>
+                <td>{{ organization.phone_fix }}</td>
+                <td>{{ organization.phone_mobile }}</td>
+                <td>
+                    <a href="{{ path('admin_organization_show', {'id': organization.id}) }}">voir</a><span style="color: #007bff"> / </span>
+                    <a href="{{ path('admin_organization_edit', {'id': organization.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <div class="container" style="display: block">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="{{ path('admin_event_home') }}">
+                    <button type="button" class=" btn btn-primary" style="width: 100px">Retour</button>
+                    <i class="fa fa-undo-alt" id="retour"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="margin-left: 46%; margin-top: 20%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+
+{% endblock %}

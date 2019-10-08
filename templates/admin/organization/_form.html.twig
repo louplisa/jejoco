@@ -1,0 +1,86 @@
+<h1 style="margin-top: 2rem">Création association :</h1>
+<div class="container">
+    <div class="form-row" style="margin-left: 2rem">
+        <div class="col-md-5 col-sm-12">
+            {{ form_start(form) }}
+
+            <label style="margin-top: 3rem">Association :</label>
+            <div style="margin: 2rem">
+                {{ form_row(form.name) }}
+
+            </div>
+            <div style="margin: 2rem">
+                {{ form_row(form.organization_number) }}
+            </div>
+
+            <label style="margin-top: 1rem">Logo (facultatif)</label>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.imageFile, {label_attr: {for: 'inputGroupFile01' }}) }}
+            </div>
+
+            <label style="margin-top: 1rem">Président :</label>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.president_lastname) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.president_firstname) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.email) }}
+            </div>
+
+        </div>
+
+        <div class="col-md-5 col-sm-12" style="margin-left: 3rem; margin-top: 2.2rem">
+            <label style="margin-top: 1rem">Siège social :</label>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.address_headquarters) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.zip_code) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.city) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.phone_fix) }}
+            </div>
+
+            <div style="margin: 2rem">
+                {{ form_row(form.phone_mobile) }}
+            </div>
+            <div class="align-middle">
+                {{ form_rest(form) }}
+                <div class="d-flex flex-row-reverse" style="margin-left: 15rem; margin-top: 3rem">
+                    <div class="p-4">
+                        <button type="submit" class="btn btn-success" style="height: 3.3rem;width: 130px">
+                            Enregistrer <i class="fa fa-save" style="width: 2rem"></i></button>
+                    </div>
+                    <div class="p-4">
+                        <a class="btn btn-primary" href="{{ path('admin_event_home') }}">
+                            <button type="button" class=" btn btn-primary" style="width: 90px">Retour</button>
+                            <i class="fa fa-undo-alt" id="retour"></i>
+                        </a>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+
+
+            </div>
+        </div>
+
+    </div>
+    <footer style="text-align: center; margin: 3rem">
+        <a href="{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}

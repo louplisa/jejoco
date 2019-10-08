@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Evénement{% endblock %}
+
+
+{% block body %}{{ parent() }}
+    <div class="card-body" id="showEvent">
+        <div class="card-title">
+            <h1 style="margin-top: 3rem;">Evénement : {{ assoEvent.name }}</h1>
+        </div>
+
+        <div class="card-text">
+            <div class="col">
+                <h2 style="text-align: left;"> Du {{ assoEvent.beginAt ? assoEvent.beginAt|date('d-m-Y H:i:s') : '' }}
+                    au {{ assoEvent.endAt ? assoEvent.endAt|date('d-m-Y H:i:s') : '' }} </h2>
+
+                <div class="mb-lg-5">
+                    <div class="form-group">
+                        <p style="margin-top: 4%; text-align: justify">{{ assoEvent.description }}</p>
+                    </div>
+                </div>
+                <div class="mb-lg-5">
+                    {% if assoEvent.eventPictureOne %}
+                    <div class="card-img" style="margin-top: 2rem">
+
+                        <a href="{{ vich_uploader_asset(assoEvent, 'imageFileOne') }}" class="js-smartPhoto">
+
+                            <img src="{{ vich_uploader_asset(assoEvent, 'imageFileOne') | imagine_filter('thumb') }}"
+                                 alt style="width: 360px; height: 230px"/>
+                        </a>
+
+                        {% endif %}
+
+                        {% if assoEvent.eventPictureThree %}
+
+                            <div class="card-img" style="margin-top: 2rem">
+                                <a href="{{ vich_uploader_asset(assoEvent, 'imageFileTwo') }}" class="js-smartPhoto">
+                                    <img src="{{ vich_uploader_asset(assoEvent, 'imageFileTwo') | imagine_filter('thumb') }}"
+                                         alt style="width: 360px; height: 230px"/>
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if assoEvent.eventPictureTwo %}
+                            <div class="card-img" style="margin-top: 2rem">
+
+                                <a href="{{ vich_uploader_asset(assoEvent, 'imageFileThree') }}" class="js-smartPhoto">
+
+                                    <img src="{{ vich_uploader_asset(assoEvent, 'imageFileThree') | imagine_filter('thumb') }}"
+                                         alt style="width: 360px; height: 230px"/>
+                                </a>
+
+                            </div>
+                        {% endif %}
+                        <div style="color: #0c84e4; font-size: 1.3rem;">
+
+                            Association(s) partenaire(s) :  {% for partner in partners %} {{ partner.name }}.
+                            {% endfor %}
+                        </div>
+
+                        <div class="container" style="display: block; margin-top: 3rem">
+                            <div class="row justify-content-md-center">
+                                <div class="col col-lg-2">
+                                    <a class="btn btn-primary" href="{{ path('admin_event_index') }}">
+                                        <button type="button" class=" btn btn-primary" style="width: 100px">Retour
+                                        </button>
+                                        <i class="fa fa-undo-alt" id="retour"></i>
+                                    </a>
+
+                                </div>
+                                <div class="col col-lg-2">
+                                    <a class="btn btn-primary"
+                                       href="{{ path('admin_event_edit', {'id': assoEvent.id}) }}">
+                                        <button type="button" class=" btn btn-primary" style="width: 100px">Modifier
+                                        </button>
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </div>
+
+                                <div class="col col-lg-2">
+                                    {{ include('admin/asso_event/_delete_form.html.twig') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer style="text-align: center; margin: 3rem">
+        <a href="{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function () {
+            let mySmartPhoto = new SmartPhoto(".js-smartPhoto");
+            mySmartPhoto.on('zoomin', function () {
+                console.log('zoomin')
+            });
+            mySmartPhoto.on('zoomout', function () {
+                console.log('zoomout')
+            });
+        });
+
+        console.log('hello');
+    </script>
+{% endblock %}

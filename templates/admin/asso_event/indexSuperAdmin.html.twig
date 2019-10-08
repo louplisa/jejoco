@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Event index{% endblock %}
+{% block stylesheets %}{{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/smartphoto@1.1.0/css/smartphoto.min.css">
+{% endblock %}
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Liste des événements :</h1>
+    <div class="container" style="overflow: auto">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titre de l'événement</th>
+                <th>Description</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Association</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for assoEvent in assoEvents %}
+
+                    <tr>
+                    <td>{{ assoEvent.name }}</td>
+                    <td>{{ assoEvent.description }}</td>
+                    <td>{{ assoEvent.beginAt ? assoEvent.beginAt|date('d-m-Y H:i:s') : '' }}</td>
+                    <td>{{ assoEvent.endAt ? assoEvent.endAt|date('d-m-Y H:i:s') : '' }}</td>
+                    <td>{{ assoEvent.organization.name }}</td>
+                    <td>
+                        <a href="{{ path('admin_event_show_is_admin', {'id': assoEvent.id}) }}">voir</a>
+                        <span>/</span>
+                        <a href="{{ path('admin_event_edit', {'id': assoEvent.id}) }}">modifier</a>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="6">aucun événement trouvé</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <footer style="text-align: center; margin: 3rem">
+        <a href="{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}
+{% block javascripts %}
+
+    <script src="https://unpkg.com/smartphoto@1.1.0/js/smartphoto.min.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function () {
+            new SmartPhoto(".js-smartPhoto", {
+                resizeStyle: 'fit'
+            });
+
+        });
+        console.log('hello');
+    </script>
+{% endblock %}

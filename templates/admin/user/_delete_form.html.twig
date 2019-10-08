@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir vous désinscrire?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+    <button class="btn btn-danger" style="height: 3.3rem;padding-left: 1rem; width: 160px; margin-left: 100px">Se désinscrire   <i class="fa fa-trash" style="width: 2rem"></i> </button>
+</form>

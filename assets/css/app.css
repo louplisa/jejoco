@@ -1,0 +1,32 @@
+h1 {
+    color: #0c84e4;
+    font-size: 1.5rem;
+    margin-left: 3rem;
+}
+
+h2 {
+    color: #0c84e4;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+h3{
+    color: #0c84e4;
+    font-size: 1.1rem;
+}
+#showEvent {
+    text-align: center;
+}
+
+label {
+    color: #0c84e4;
+}
+
+#calendar{
+    color: #0c84e4;
+    font-size: 23px;
+}
+
+label.custom-file-label::after{
+    content: "Charger";
+}

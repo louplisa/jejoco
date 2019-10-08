@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - choix des futurs membres{% endblock %}
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Choisissez le ou les utilisateur(s) autorisé(s) à créer des événements :</h1>
+    <div class="container align-items-center">
+        {% for user in users if user.id %}
+
+        <form action="{{ path('admin_user_status_change', {id: user.id}) }}">
+            {% endfor %}
+
+            {% for user in users %}
+
+                <div class="container" style="margin-left: 40%">
+                    <div class="mt-4">
+
+                        <input type="checkbox" name="myIds[]"
+                               value="{{ user.id }}">
+                        {{ user.firstname }} {{ user.lastname }}
+
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            <div class="row" style="text-align: center; margin-top: 2rem; margin-left: 43%">
+                <button class="btn btn-success">Valider <i class="fa fa-check"></i></button>
+            </div>
+        </form>
+    </div>
+    <footer style="text-align: center; margin-top: 30%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}

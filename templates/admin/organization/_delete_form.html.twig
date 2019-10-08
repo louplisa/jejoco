@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('admin_organization_delete', {'id': organization.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir supprimer cette association?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ organization.id) }}">
+    <button class="btn btn-danger" style="height: 3.3rem;padding-left: 1rem; width: 130px">Supprimer   <i class="fa fa-trash" style="width: 2rem"></i> </button>
+</form>
+

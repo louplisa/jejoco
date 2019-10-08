@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Nouvelle Association{% endblock %}
+
+{% block body %}{{ parent() }}
+
+
+    {{ include('admin/organization/_form.html.twig') }}
+
+
+{% endblock %}

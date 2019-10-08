@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Choix association{% endblock %}
+{% block body %}{{ parent() }}
+
+    <h1 style="margin-top: 2rem">Choisissez l'association émettrice de l'événement :</h1>
+    {% for a_organization  in a_organizations if a_organization.id  %}
+        <form action="{{ path('admin_event_new', {id: a_organization.id }) }}">
+    {% endfor %}
+
+    {% for a_organization in a_organizations %}
+        <div class="container">
+            <div class="d-flex justify-content-center p-2" style="float: none">
+                <button class="btn btn-primary" value="{{ a_organization.name }}">{{ a_organization.name }}</button>
+            </div>
+        </div>
+    {% endfor %}
+    </form>
+
+    {% for b_organization  in b_organizations if b_organization.id  %}
+        <form action="{{ path('admin_event_new', {id: b_organization.id }) }}">
+    {% endfor %}
+
+    {% for b_organization in b_organizations %}
+        <div class="container">
+            <div class="d-flex justify-content-center p-2" style="float: none">
+                <button class="btn btn-primary" value="{{ b_organization.name }}">{{ b_organization.name }}</button>
+            </div>
+        </div>
+    {% endfor %}
+    </form>
+
+
+    <footer style="margin-left: 46.1%; margin-top: 25%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+
+{% endblock %}

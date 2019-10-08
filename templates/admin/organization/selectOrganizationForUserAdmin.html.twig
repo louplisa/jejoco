@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Choix association{% endblock %}
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Choisissez l'association :</h1>
+
+    {% for organization in organizations if organization.id %}
+        <form action="{{ path('admin_user_choice', {id: organization.id}) }}">
+    {% endfor %}
+
+    {% for organization in organizations %}
+        <div class="container">
+            <div class="d-flex justify-content-center p-2" style="float: none">
+                <button class="btn btn-primary"  name="idOrg" value="{{ organization.id }}">{{ organization.name }}</button>
+            </div>
+        </div>
+    {% endfor %}
+
+    </form>
+    <footer style="margin-left: 46.8%; margin-top: 30%">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}

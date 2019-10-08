@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Inscription{% endblock %}
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Inscription</h1>
+    <div class="container">
+        <div class="mt-4">
+            {{ form_start(form) }}
+            {{ form_row(form.lastname) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+
+            <div style="margin: 2rem">
+                <span style="color: #0c84e4; margin-bottom: 3rem; margin-top: 2rem">Choisissez la ou les association(s) dont vous souhaitez être membre : (facultatif)</span>
+                <div style="margin: 2rem">
+                    {{ form_row(form.belongTos) }}
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-2">
+                    <button type="submit" class="btn btn-success">Confirmer inscription</button>
+                </div>
+                <div class="col-md-auto">
+                    <button type="button" class="btn btn-danger">Annuler</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <footer style="text-align: center; margin: 3rem">
+        <a href="{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+

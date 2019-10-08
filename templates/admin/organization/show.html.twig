@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Association{% endblock %}
+
+{% block body %}{{ parent() }}
+    <h1 style="margin-top: 2rem">Association</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ organization.name }}</td>
+            </tr>
+            <tr>
+                <th>N°association</th>
+                <td>{{ organization.organizationNumber }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ organization.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ organization.addressHeadquarters }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ organization.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ organization.city }}</td>
+            </tr>
+            <tr>
+                <th>Nom président(e)</th>
+                <td>{{ organization.presidentLastname }}</td>
+            </tr>
+            <tr>
+                <th>Prénom président(e)</th>
+                <td>{{ organization.presidentFirstname }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ organization.phoneFix }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone mobile</th>
+                <td>{{ organization.phoneMobile }}</td>
+            </tr>
+            <tr>
+                {% if organization.logo %}
+                    <th>Logo</th>
+                    <div class="card-img" style="margin-top: 2rem" >
+                        <a href="{{ vich_uploader_asset(organization, 'imageFile') }}" class="js-smartPhoto">
+
+                            <td>   <img src="{{ vich_uploader_asset(organization, 'imageFile')| imagine_filter('thumb') }}" alt></td>
+                        </a>
+                    </div>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container" style="display: block; margin-top: 3rem">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="{{ path('admin_organization_index') }}">
+                    <button type="button" class=" btn btn-primary" style="width: 100px">Retour</button>
+                    <i class="fa fa-undo-alt" id="retour"></i>
+                </a>
+
+            </div>
+            <div class="col col-lg-2">
+                <a class="btn btn-primary" href="{{ path('admin_organization_edit', {'id': organization.id}) }}">
+                    <button type="button" class=" btn btn-primary" style="width: 100px">Modifier</button>
+                    <i class="fa fa-edit"></i>
+                </a>
+            </div>
+
+            <div class="col col-lg-2">
+                {{ include('admin/organization/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <footer style="text-align: center; margin: 3rem">
+        <a href= "{{ path('mentions_rgpd') }}">Mentions légales</a></footer>
+{% endblock %}
